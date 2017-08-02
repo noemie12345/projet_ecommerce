@@ -1,8 +1,18 @@
 package fr.adaming.model;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="clients")
 public class Client implements Serializable{
 
 	/**
@@ -10,19 +20,35 @@ public class Client implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_c")
 	private Long idClient;
+	@Column(name="nom_c")
 	private String nomClient;
 	private String adresse;
 	private String email;
 	private String tel;
 	
+//	@OneToMany(mappedBy="client")
+//	private List<Commande> commande;
 	
+	/**
+	 * Contstructeur vide
+	 */
 	public Client() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-
+	/**
+	 * Constructeur avec id
+	 * @param idClient
+	 * @param nomClient
+	 * @param adresse
+	 * @param email
+	 * @param tel
+	 */
 	public Client(Long idClient, String nomClient, String adresse, String email, String tel) {
 		super();
 		this.idClient = idClient;
@@ -33,6 +59,13 @@ public class Client implements Serializable{
 	}
 
 
+	/**
+	 * Constructeur sans id
+	 * @param nomClient
+	 * @param adresse
+	 * @param email
+	 * @param tel
+	 */
 	public Client(String nomClient, String adresse, String email, String tel) {
 		super();
 		this.nomClient = nomClient;
@@ -41,6 +74,9 @@ public class Client implements Serializable{
 		this.tel = tel;
 	}
 
+	/**
+	 * Méthode toString qui renvoie les différentes valeurs des attributs de la classe Client dans la console de Java
+	 */
 
 	@Override
 	public String toString() {
@@ -48,6 +84,10 @@ public class Client implements Serializable{
 				+ ", tel=" + tel + "]";
 	}
 
+	/**
+	 * Liste des setters et getters pour les différents attributs de la classe Client
+	 * @return
+	 */
 
 	public Long getIdClient() {
 		return idClient;

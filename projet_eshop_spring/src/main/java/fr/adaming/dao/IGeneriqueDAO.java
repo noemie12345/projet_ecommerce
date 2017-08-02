@@ -1,4 +1,4 @@
-package fr.adaming.DAO;
+package fr.adaming.dao;
 
 import java.util.Collection;
 
@@ -8,9 +8,9 @@ public interface IGeneriqueDAO<T> {
 	
 	public void update(T t);
 	
-	public void delete(int id);
+	public void delete(Long id);
 	
-	public T getById(int id);
+	public T getById(Long id);
 	
 	public Collection<T> getAll();
 }

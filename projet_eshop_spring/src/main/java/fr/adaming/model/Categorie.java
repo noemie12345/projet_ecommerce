@@ -11,14 +11,14 @@ public class Categorie {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Categorie(Long idCategorie, String nomCategorie, byte photo, String description) {
+	public Categorie(Long idCategorie, String nomCategorie, String description) {
 		super();
 		this.idCategorie = idCategorie;
 		this.nomCategorie = nomCategorie;
 		this.description = description;
 	}
 
-	public Categorie(String nomCategorie, byte photo, String description) {
+	public Categorie(String nomCategorie, String description) {
 		super();
 		this.nomCategorie = nomCategorie;
 		this.description = description;
@@ -26,7 +26,7 @@ public class Categorie {
 
 	@Override
 	public String toString() {
-		return "Categorie [idCategorie=" + idCategorie + ", nomCategorie=" + nomCategorie + ", photo=" + photo
+		return "Categorie [idCategorie=" + idCategorie + ", nomCategorie=" + nomCategorie
 				+ ", description=" + description + "]";
 	}
 
