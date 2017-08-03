@@ -3,3 +3,9 @@ Problèmes rencontrés:
 	les déclarer en tant que types primitifs et non en tant que Classe pour ne pas avoir de problèmes 
 	sur les méthodes de DAO par la suite. 
 	On utilise donc long et non Long pour définir les attributs des classes concernées.
+	
+
+			<p:outputLabel for="idSelectionne" value="Selectionne: " />
+			<p:inputMask id="idSelectionne" value="#{produitMB.produit.selectionne}" />
+			
+			

@@ -78,7 +78,20 @@ public class ClientDAO implements IClientDAO{
 	public Client getByNom(String nom) {
 		// TODO Auto-generated method stub
 		Session s = sf.getCurrentSession();
-		return null;
+		
+		// requete HQL
+        String req = "FROM Client as c WHERE c.nomClient=:pNom";
+
+      //Création de la requête
+        Query query = s.createQuery(req);
+
+        //Assignation des paramètres 
+        query.setParameter("pNom", nom);
+
+        //Récupération du résultat de la requête
+        Client client_rec = (Client) query.uniqueResult();
+
+        return client_rec;
 	}
 
 }

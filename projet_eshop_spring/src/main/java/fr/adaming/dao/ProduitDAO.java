@@ -68,10 +68,19 @@ public class ProduitDAO implements IProduitDAO {
 	}
 
 	@Override
-	public Produit getByNom(Produit produit) {
+	public Produit getByNom(String nom) {
 		Session s = sf.getCurrentSession();
-		// Récuperer le client par id en utilisant une fonction de Hibernate
-		Produit prod = (Produit) s.get(Produit.class, produit.getDesignation());
-		return prod;
+		
+		//Requête HQL
+		String req = "FROM Produit as p WHERE p.designation=:pNom";
+		//Création de la requête
+		Query query = s.createQuery(req);
+		 //Assignation des paramètres 
+        query.setParameter("pNom", nom);
+
+        //Récupération du résultat de la requête
+        Produit produit_rec = (Produit) query.uniqueResult();
+
+        return produit_rec;
 	}
 }
