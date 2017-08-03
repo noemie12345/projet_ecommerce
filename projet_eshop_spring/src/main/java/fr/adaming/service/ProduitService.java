@@ -27,12 +27,12 @@ public class ProduitService implements IProduitService {
 	}
 
 	@Override
-	public void delete(Long id) {
+	public void delete(long id) {
 		produitDAO.delete(id);
 	}
 
 	@Override
-	public Produit getById(Long id) {
+	public Produit getById(long id) {
 		return produitDAO.getById(id);
 	}
 

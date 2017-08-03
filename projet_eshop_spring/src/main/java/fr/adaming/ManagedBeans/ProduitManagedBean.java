@@ -78,6 +78,6 @@ public class ProduitManagedBean {
 	public String modifierProduit() {
 		produitService.update(this.produit);
 		this.listeProduits = (List<Produit>) produitService.getAll();
-		return "accueil";
+		return "produit";
 	}
 }

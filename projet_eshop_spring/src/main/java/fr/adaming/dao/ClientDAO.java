@@ -39,7 +39,7 @@ public class ClientDAO implements IClientDAO{
 	}
 
 	@Override
-	public void delete(Long id) {
+	public void delete(long id) {
 		Session s = sf.getCurrentSession();
 		
 		//Trouver le client à updater en utilisant la méthode get
@@ -49,7 +49,7 @@ public class ClientDAO implements IClientDAO{
 	}
 
 	@Override
-	public Client getById(Long id) {
+	public Client getById(long id) {
 		Session s = sf.getCurrentSession();
 		
 		//Récuperer le client par id en utilisant une fonction de Hibernate 

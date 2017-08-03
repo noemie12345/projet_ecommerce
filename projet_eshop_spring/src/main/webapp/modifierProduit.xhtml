@@ -30,6 +30,9 @@
 
 	<h:form>
 		<h:panelGrid columns="2" cellpadding="5">
+			<p:outputLabel for="idProduit" value="ID: " />
+			<p:inputMask id="idProduit" value="#{produitMB.produit.idProduit}" />
+			
 			<p:outputLabel for="idDesignation" value="Désignation: " />
 			<p:inputMask id="idDesignation" value="#{produitMB.produit.designation}" />
 

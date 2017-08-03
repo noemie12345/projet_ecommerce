@@ -40,13 +40,13 @@ public class ClientService implements IClientService {
 	}
 
 	@Override
-	public void delete(Long id) {
+	public void delete(long id) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public Client getById(Long id) {
+	public Client getById(long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}

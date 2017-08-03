@@ -29,31 +29,31 @@
 	<h1 style="text-align: center; color: red">Produit Trouvé</h1>
 
 	<h:form>
-	<p:dataTable var="produit" value="#{produitMB.produit}">
-    <p:column headerText="Id">
-        <h:outputText value="#{produit.idProduit}" />
-    </p:column>
- 
-    <p:column headerText="Nom du produit">
-        <h:outputText value="#{produit.designation}" />
-    </p:column>
- 
-    <p:column headerText="Description">
-        <h:outputText value="#{produit.description}" />
-    </p:column>
- 
-    <p:column headerText="Prix">
-        <h:outputText value="#{produit.prix}" />
-    </p:column>
-    
-    <p:column headerText="Quantité">
-        <h:outputText value="#{produit.quantite}" />
-    </p:column>
-    
-    <p:column headerText="Selectionné">
-        <h:outputText value="#{produit.selectionne}" />
-    </p:column>
-    </p:dataTable>
+	<h:panelGrid columns="2" cellpadding="5">
+			<p:outputLabel for="idProduit" value="ID: " />
+			<p:inputMask id="idProduit" value="#{produitMB.produit.idProduit}" />
+			
+			<p:outputLabel for="idDesignation" value="Désignation: " />
+			<p:inputMask id="idDesignation" value="#{produitMB.produit.designation}" />
+
+			<p:outputLabel for="idDescription" value="Description" />
+			<p:inputMask id="idDescription" value="#{produitMB.produit.description}" />
+
+			<p:outputLabel for="idPrix" value="Prix:" />
+			<p:inputMask id="idPrix" value="#{produitMB.produit.prix}" />
+
+			<p:outputLabel for="idQuantite" value="Quantité:" />
+			<p:inputMask id="idQuantite" value="#{produitMB.produit.quantite}" />
+
+			<p:outputLabel for="idSelectionne" value="Selectionne: " />
+			<p:inputMask id="idSelectionne" value="#{produitMB.produit.selectionne}" />
+			
+			<p:outputLabel for="car" value="Grouping: " />
+        <p:selectOneMenu id="car" value="#{selectOneMenuView.car}">
+            <f:selectItem itemLabel="Choisissez" itemValue="" />
+            <f:selectItems value="#{selectOneMenuView.cars}" />
+        </p:selectOneMenu>
+		</h:panelGrid>
 		<p:commandButton value="Supprimer" id="supprimer" update="@all"
 				actionListener="#{produitMB.supprimerProduit}"
 				styleClass="ui-priority-primary" />

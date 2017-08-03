@@ -21,7 +21,7 @@ public class Produit implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_p")
-	private Long idProduit;
+	private long idProduit;
 	private String designation;
 	private String description;
 	private double prix;
@@ -34,7 +34,7 @@ public class Produit implements Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Produit(Long idProduit, String designation, String description, double prix, int quantite,
+	public Produit(long idProduit, String designation, String description, double prix, int quantite,
 			boolean selectionne) {
 		super();
 		this.idProduit = idProduit;
@@ -57,10 +57,10 @@ public class Produit implements Serializable{
 		return "Produit [idProduit=" + idProduit + ", designation=" + designation + ", description=" + description
 				+ ", prix=" + prix + ", quantite=" + quantite + ", selectionne=" + selectionne + "]";
 	}
-	public Long getIdProduit() {
+	public long getIdProduit() {
 		return idProduit;
 	}
-	public void setIdProduit(Long idProduit) {
+	public void setIdProduit(long idProduit) {
 		this.idProduit = idProduit;
 	}
 	public String getDesignation() {

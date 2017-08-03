@@ -35,7 +35,7 @@ public class ProduitDAO implements IProduitDAO {
 	}
 
 	@Override
-	public void delete(Long id) {
+	public void delete(long id) {
 		Session s = sf.getCurrentSession();
 		//Trouver le client à updater en utilisant la méthode get
 		Produit pr = (Produit) s.get(Produit.class, id);
@@ -44,7 +44,7 @@ public class ProduitDAO implements IProduitDAO {
 	}
 
 	@Override
-	public Produit getById(Long id) {
+	public Produit getById(long id) {
 		Session s = sf.getCurrentSession();
 		// Récuperer le client par id en utilisant une fonction de Hibernate
 		Produit produit = (Produit) s.get(Produit.class, id);

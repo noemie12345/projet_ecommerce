@@ -8,9 +8,9 @@ public interface IGeneriqueDAO<T> {
 	
 	public void update(T t);
 	
-	public void delete(Long id);
+	public void delete(long id);
 	
-	public T getById(Long id);
+	public T getById(long id);
 	
 	public Collection<T> getAll();
 }
