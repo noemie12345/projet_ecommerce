@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Administrateur Catégories</title>
+</h:head>
+
+<h:body>
+	<ui:insert name="header">
+		<ui:include src="templates/headerTemplateCategorie.xhtml"></ui:include>
+	</ui:insert>
+
+<h:form>
+	<p:dataTable var="produit" value="#{produitMB.listeProduits}">
+    <p:column headerText="Id">
+        <h:outputText value="#{produit.idProduit}" />
+    </p:column>
+ 
+    <p:column headerText="Nom du produit">
+        <h:outputText value="#{produit.designation}" />
+    </p:column>
+ 
+    <p:column headerText="Description">
+        <h:outputText value="#{produit.description}" />
+    </p:column>
+ 
+    <p:column headerText="Prix">
+        <h:outputText value="#{produit.prix}" />
+    </p:column>
+    
+    <p:column headerText="Quantité">
+        <h:outputText value="#{produit.quantite}" />
+    </p:column>
+    
+    <p:column headerText="Selectionné">
+        <h:outputText value="#{produit.selectionne}" />
+    </p:column>
+    
+    <p:column headerText="Opérations">
+    <p:commandButton value="Supprimer" id="supprimer" update="@all"
+				action="#{produitMB.supprimerProduit}"
+				styleClass="ui-priority-primary" > 
+	<f:setPropertyActionListener value="#{produit.idProduit}" target="#{produitMB.produit.idProduit}" />		
+	</p:commandButton>
+    </p:column>
+</p:dataTable>
+
+</h:form>
+</h:body>
+
+</html>

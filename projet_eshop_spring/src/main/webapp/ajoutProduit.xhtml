@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Administrateur produit</title>
+</h:head>
+
+<ui:insert name="header">
+	<ui:include src="templates/headerTemplateProduit.xhtml"></ui:include>
+</ui:insert>
+
+<h:body>
+	<h:form>
+		<h:panelGrid columns="2" cellpadding="5">
+			<p:outputLabel for="idDesignation" value="Désignation: " />
+			<p:inputMask id="idDesignation" value="#{produitMB.produit.designation}" />
+
+			<p:outputLabel for="idDescription" value="Description" />
+			<p:inputMask id="idDescription" value="#{produitMB.produit.description}" />
+
+			<p:outputLabel for="idPrix" value="Prix:" />
+			<p:inputMask id="idPrix" value="#{produitMB.produit.prix}" />
+
+			<p:outputLabel for="idQuantite" value="Quantité:" />
+			<p:inputMask id="idQuantite" value="#{produitMB.produit.quantite}" />
+
+			<p:outputLabel for="idSelectionne" value="Selectionne: " />
+			<p:inputMask id="idSelectionne" value="#{produitMB.produit.selectionne}" />
+
+			<p:commandButton value="Ajouter" id="ajouter" update="@all"
+				action="#{produitMB.ajouterProduit}"
+				styleClass="ui-priority-primary" />
+
+		</h:panelGrid>
+	</h:form>
+
+</h:body>
+</html>

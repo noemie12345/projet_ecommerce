@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Administrateur produit</title>
+</h:head>
+
+<h:body>
+	<ui:insert name="header">
+		<ui:include src="templates/headerTemplateProduit.xhtml"></ui:include>
+	</ui:insert>
+
+	<h:form>
+		<h:panelGrid columns="2" cellpadding="5">
+			<p:outputLabel for="idProduit" value="ID: " />
+			<p:inputMask id="idProduit" value="#{produitMB.produit.idProduit}" />
+		</h:panelGrid>
+		<p:commandButton value="Rechercher" id="rechercher" update="@all"
+			action="#{produitMB.rechercherProduit}"
+			styleClass="ui-priority-primary" />
+	</h:form>
+
+	<p:separator />
+	<h1 style="text-align: center; color: red">Produit Trouvé</h1>
+
+	<h:form>
+		<h:panelGrid columns="2" cellpadding="5">
+			<p:outputLabel for="idDesignation" value="Désignation: " />
+			<p:inputMask id="idDesignation" value="#{produitMB.produit.designation}" />
+
+			<p:outputLabel for="idDescription" value="Description" />
+			<p:inputMask id="idDescription" value="#{produitMB.produit.description}" />
+
+			<p:outputLabel for="idPrix" value="Prix:" />
+			<p:inputMask id="idPrix" value="#{produitMB.produit.prix}" />
+
+			<p:outputLabel for="idQuantite" value="Quantité:" />
+			<p:inputMask id="idQuantite" value="#{produitMB.produit.quantite}" />
+
+			<p:outputLabel for="idSelectionne" value="Selectionne: " />
+			<p:inputMask id="idSelectionne" value="#{produitMB.produit.selectionne}" />
+
+			<p:commandButton value="Modifier" id="modifier" update="@all"
+				action="#{produitMB.modifierProduit}"
+				styleClass="ui-priority-primary" />
+
+		</h:panelGrid>
+	</h:form>
+</h:body>
+</html>
