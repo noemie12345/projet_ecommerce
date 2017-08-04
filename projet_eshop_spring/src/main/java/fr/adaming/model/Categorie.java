@@ -1,17 +1,37 @@
 package fr.adaming.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="categories")
 public class Categorie {
 
-	private Long idCategorie;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_cat")
+	private long idCategorie;
 	private String nomCategorie;
 	private String description;
+	
+	@OneToMany(mappedBy="categorie", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	private List<Produit> produit;
 	
 	public Categorie() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Categorie(Long idCategorie, String nomCategorie, String description) {
+	public Categorie(long idCategorie, String nomCategorie, String description) {
 		super();
 		this.idCategorie = idCategorie;
 		this.nomCategorie = nomCategorie;
@@ -30,11 +50,11 @@ public class Categorie {
 				+ ", description=" + description + "]";
 	}
 
-	public Long getIdCategorie() {
+	public long getIdCategorie() {
 		return idCategorie;
 	}
 
-	public void setIdCategorie(Long idCategorie) {
+	public void setIdCategorie(long idCategorie) {
 		this.idCategorie = idCategorie;
 	}
 
@@ -52,6 +72,14 @@ public class Categorie {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public List<Produit> getProduit() {
+		return produit;
+	}
+
+	public void setProduit(List<Produit> produit) {
+		this.produit = produit;
 	}
 	
 }

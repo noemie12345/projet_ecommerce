@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -29,6 +31,10 @@ public class Produit implements Serializable{
 	
 	@Column(nullable=false, columnDefinition="TINYINT", length = 1)
 	private boolean selectionne;
+	
+	@ManyToOne
+	@JoinColumn(name="categorie_id", referencedColumnName="id_cat")
+	private Categorie categorie;
 	
 	public Produit() {
 		super();
@@ -93,5 +99,11 @@ public class Produit implements Serializable{
 	public void setSelectionne(boolean selectionne) {
 		this.selectionne = selectionne;
 	}
-	
+	public Categorie getCategorie() {
+		return categorie;
+	}
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
+	}
+
 }
