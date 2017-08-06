@@ -2,22 +2,26 @@ package fr.adaming.ManagedBeans;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 
 import fr.adaming.model.Client;
+import fr.adaming.model.Panier;
 import fr.adaming.service.IClientService;
 
-@ManagedBean(name="clMB")
-@RequestScoped
+@ManagedBean(name = "clMB")
+@SessionScoped
 public class ClientManagedBean {
 
 	private Client client;
-	
+
 	private List<Client> listeCl;
-	
-	@ManagedProperty(value="#{clientServiceBean}")
+
+	private Panier panier;
+
+	@ManagedProperty(value = "#{clientServiceBean}")
 	private IClientService clService;
 
 	/**
@@ -28,6 +32,11 @@ public class ClientManagedBean {
 		this.client = new Client();
 		// TODO Auto-generated constructor stub
 	}
+	
+	@PostConstruct
+	public void init() {
+		this.listeCl = (List<Client>) clService.getAll();
+	}
 
 	@Override
 	public String toString() {
@@ -35,7 +44,8 @@ public class ClientManagedBean {
 	}
 
 	/**
-	 * Setters - getters des paramètres 
+	 * Setters - getters des paramètres
+	 * 
 	 * @return
 	 */
 	public Client getClient() {
@@ -53,12 +63,44 @@ public class ClientManagedBean {
 	public void setListeCl(List<Client> listeCl) {
 		this.listeCl = listeCl;
 	}
+
+	public void setClService(IClientService clService) {
+		this.clService = clService;
+	}
 	
-	//Méthode Service
+	public Panier getPanier() {
+		return panier;
+	}
+
+	public void setPanier(Panier panier) {
+		this.panier = panier;
+	}
 	
+	// Méthode Service
+
 	public String ajouterClient() {
 		clService.add(this.client);
 		this.listeCl = (List<Client>) clService.getAll();
-		return "accueil";
+		return "accueilClient";
+	}
+
+	public String supprimerClient() {
+		clService.delete(this.client.getIdClient());
+		this.listeCl = (List<Client>) clService.getAll();
+		return "client";
+	}
+
+	public void rechercherClientNom() {
+		this.client = clService.getByNom(this.client.getNomClient());
+	}
+	
+	public void rechercherClient() {
+		this.client = clService.getById(this.client.getIdClient());
+	}
+
+	public String ajoutPanier() {
+		Panier panier = new Panier(this.client, this.panier.getListeProduits(), this.panier.getListeLigne());
+		System.out.println("panier: " + panier);
+		return "accueilClient";
 	}
 }

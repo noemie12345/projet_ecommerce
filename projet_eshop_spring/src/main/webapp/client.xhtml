@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Page Accueil</title>
+</h:head>
+
+<h:body>
+
+	<ui:insert name="header">
+		<ui:include src="templates/headerTemplateClientAdmin.xhtml"></ui:include>
+	</ui:insert>
+	
+<h:form>
+		<p:dataTable var="client" value="#{clMB.listeCl}">
+			<p:column headerText="Id ">
+				<h:outputText value="#{client.idClient}" />
+			</p:column>
+
+			<p:column headerText="Nom du client">
+				<h:outputText value="#{client.nomClient}" />
+			</p:column>
+
+			<p:column headerText="Adresse">
+				<h:outputText value="#{client.adresse}" />
+			</p:column>
+
+			<p:column headerText="E-mail">
+				<h:outputText value="#{client.email}" />
+			</p:column>
+
+			<p:column headerText="Téléphone">
+				<h:outputText value="#{client.tel}" />
+			</p:column>
+
+			<p:column headerText="Opérations">
+				<p:commandButton value="Supprimer" id="supprimer" update="@all"
+					action="#{clMB.supprimerClient}"
+					styleClass="ui-priority-primary">
+					<f:setPropertyActionListener value="#{client.idClient}"
+						target="#{clMB.client.idClient}" />
+				</p:commandButton>
+			</p:column>
+		</p:dataTable>
+
+	</h:form>
+</h:body>
+
+</html>
+

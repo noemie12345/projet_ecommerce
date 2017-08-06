@@ -5,19 +5,19 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 
 import fr.adaming.model.Categorie;
 import fr.adaming.service.ICategorieService;
 
 @ManagedBean(name="categorieMB")
-@RequestScoped
+@SessionScoped
 public class CategorieManagedBean {
 
 	private Categorie categorie;
 	private List<Categorie> listCategories;
 	
-	@ManagedProperty("categorieServiceBean")
+	@ManagedProperty(value="#{categorieServiceBean}")
 	private ICategorieService catService;
 
 	//Constructeur vide
@@ -47,11 +47,7 @@ public class CategorieManagedBean {
 	public void setListCategories(List<Categorie> listCategories) {
 		this.listCategories = listCategories;
 	}
-
-	public ICategorieService getCatService() {
-		return catService;
-	}
-
+	
 	public void setCatService(ICategorieService catService) {
 		this.catService = catService;
 	}
@@ -80,4 +76,7 @@ public class CategorieManagedBean {
 		return "categorie";
 	}
 	
+	public void rechercherCategorieNom() {
+		this.categorie = catService.getByNom(this.categorie.getNomCategorie());
+}
 }

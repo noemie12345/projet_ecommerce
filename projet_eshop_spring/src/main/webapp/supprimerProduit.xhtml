@@ -17,7 +17,7 @@
 
 	<h:form>
 		<h:panelGrid columns="2" cellpadding="5">
-			<p:outputLabel for="idProduit" value="ID: " />
+			<p:outputLabel for="idProduit" value="ID" />
 			<p:inputMask id="idProduit" value="#{produitMB.produit.idProduit}" />
 		</h:panelGrid>
 		<p:commandButton value="Rechercher" id="rechercher" update="@all"
@@ -30,29 +30,24 @@
 
 	<h:form>
 	<h:panelGrid columns="2" cellpadding="5">
-			<p:outputLabel for="idProduit" value="ID: " />
+			<p:outputLabel for="idProduit" value="ID" />
 			<p:inputMask id="idProduit" value="#{produitMB.produit.idProduit}" />
 			
-			<p:outputLabel for="idDesignation" value="Désignation: " />
+			<p:outputLabel for="idDesignation" value="Désignation" />
 			<p:inputMask id="idDesignation" value="#{produitMB.produit.designation}" />
 
 			<p:outputLabel for="idDescription" value="Description" />
 			<p:inputMask id="idDescription" value="#{produitMB.produit.description}" />
 
-			<p:outputLabel for="idPrix" value="Prix:" />
+			<p:outputLabel for="idPrix" value="Prix" />
 			<p:inputMask id="idPrix" value="#{produitMB.produit.prix}" />
 
-			<p:outputLabel for="idQuantite" value="Quantité:" />
+			<p:outputLabel for="idQuantite" value="Quantité" />
 			<p:inputMask id="idQuantite" value="#{produitMB.produit.quantite}" />
 
-			<p:outputLabel for="idSelectionne" value="Selectionne: " />
+			<p:outputLabel for="idSelectionne" value="Selectionne" />
 			<p:inputMask id="idSelectionne" value="#{produitMB.produit.selectionne}" />
 			
-			<p:outputLabel for="idSelectionne" value="Selectionne " />
-        <p:selectOneMenu id="idSelectionne" value="#{selectOneMenuView.car}">
-            <f:selectItem itemLabel="Choisissez" itemValue="" />
-            <f:selectItems value="#{selectOneMenuView.cars}" />
-        </p:selectOneMenu>
 		</h:panelGrid>
 		<p:commandButton value="Supprimer" id="supprimer" update="@all"
 				actionListener="#{produitMB.supprimerProduit}"

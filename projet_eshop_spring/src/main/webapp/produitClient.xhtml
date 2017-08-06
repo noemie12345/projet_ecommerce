@@ -7,12 +7,12 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<title>Administrateur produit</title>
+	<title>Catalogue Produit</title>
 </h:head>
 
 <h:body>
 	<ui:insert name="header">
-		<ui:include src="templates/headerTemplateProduit.xhtml"></ui:include>
+		<ui:include src="templates/headerTemplateClient.xhtml"></ui:include>
 	</ui:insert>
 
 	<h:form>
@@ -46,11 +46,11 @@
 			</p:column>
 
 			<p:column headerText="Opérations">
-				<p:commandButton value="Supprimer" id="supprimer" update="@all"
-					action="#{produitMB.supprimerProduit}"
+				<p:commandButton value="Ajouter au panier" id="ajoutPanier" update="@all"
+					action="#{clMB.ajoutPanier}"
 					styleClass="ui-priority-primary">
-					<f:setPropertyActionListener value="#{produit.idProduit}"
-						target="#{produitMB.produit.idProduit}" />
+					<f:setPropertyActionListener value="#{client.idClient}"
+						target="#{clMB.client.idClient}" />
 				</p:commandButton>
 			</p:column>
 		</p:dataTable>

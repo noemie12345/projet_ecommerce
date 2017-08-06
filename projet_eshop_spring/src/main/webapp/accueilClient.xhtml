@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Page Accueil</title>
+</h:head>
+
+<h:body>
+
+	<ui:insert name="header">
+		<ui:include src="templates/headerTemplateClient.xhtml"></ui:include>
+	</ui:insert>
+	
+	<h1>Bienvenue Client</h1>
+	
+	<h:form>
+		<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+			<p:outputLabel for="nom" value="Nom" />
+			<p:inputMask id="nom"
+				value="#{clMB.client.nomClient}" />
+
+			<p:outputLabel for="adresse" value="Adresse" />
+			<p:inputMask id="adresse"
+				value="#{clMB.client.adresse}" />
+
+			<p:outputLabel for="email" value="E-mail" />
+			<p:inputMask id="email" value="#{clMB.client.email}" />
+
+			<p:outputLabel for="telephone" value="Téléphone: " />
+			<p:inputMask id="telephone" value="#{clMB.client.tel}" />
+
+		</h:panelGrid>
+		<p:commandButton id="submit" value="Ajouter Client"
+			action="#{clMB.ajouterClient}" update="@all"
+			icon="ui-icon-check" oncomplete="PF('dlg').show()" />
+	</h:form>
+	
+</h:body>
+</html>

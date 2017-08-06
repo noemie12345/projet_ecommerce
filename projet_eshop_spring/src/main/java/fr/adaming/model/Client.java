@@ -3,6 +3,7 @@ package fr.adaming.model;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,8 +31,8 @@ public class Client implements Serializable{
 	private String email;
 	private String tel;
 	
-//	@OneToMany(mappedBy="client")
-//	private List<Commande> commande;
+	@OneToMany(mappedBy="client", cascade=CascadeType.ALL)
+	private List<Commande> commande;
 	
 	/**
 	 * Contstructeur vide

@@ -1,5 +1,6 @@
 package fr.adaming.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -14,8 +15,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="categories")
-public class Categorie {
+public class Categorie implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_cat")
@@ -23,7 +29,7 @@ public class Categorie {
 	private String nomCategorie;
 	private String description;
 	
-	@OneToMany(mappedBy="categorie", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
+	@OneToMany(mappedBy="categorie", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private List<Produit> produit;
 	
 	public Categorie() {

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Administrateur Client</title>
+</h:head>
+
+<h:body>
+	<ui:insert name="header">
+		<ui:include src="templates/headerTemplateClientAdmin.xhtml"></ui:include>
+	</ui:insert>
+
+	<h:form>
+		<h:panelGrid columns="2" cellpadding="5">
+			<p:outputLabel for="idClient" value="ID" />
+			<p:inputMask id="idClient" value="#{clMB.client.idClient}" />
+		</h:panelGrid>
+		<p:commandButton value="Rechercher" id="rechercher" update="@all"
+			action="#{clMB.rechercherClient}" styleClass="ui-priority-primary" />
+	</h:form>
+
+<p:separator />
+<h1 style="text-align: center; color:red">Client Trouvé</h1> 
+
+<p:dataTable var="client" value="#{clMB.client}">
+    <p:column headerText="ID">
+        <h:outputText value="#{client.idClient}" />
+    </p:column>
+ 
+    <p:column headerText="Nom">
+        <h:outputText value="#{client.nomClient}" />
+    </p:column>
+    
+    <p:column headerText="Adresse">
+        <h:outputText value="#{client.adresse}" />
+    </p:column>
+    
+    <p:column headerText="E-mail">
+        <h:outputText value="#{client.email}" />
+    </p:column>
+    
+    <p:column headerText="Téléphone">
+        <h:outputText value="#{client.tel}" />
+    </p:column>
+</p:dataTable>
+	
+</h:body>
+</html>
