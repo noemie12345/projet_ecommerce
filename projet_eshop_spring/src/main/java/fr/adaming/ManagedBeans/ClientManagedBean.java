@@ -105,6 +105,7 @@ public class ClientManagedBean {
 	public void ajoutPanier() {
 //		this.panier = new Panier(this.panier.getListeProduits(), this.panier.getListeLigne());
 		this.panier = new Panier(this.panier.getProduit(), this.panier.getLigne());
+		System.out.println("panier: "+panier);
 		FacesMessage message = new FacesMessage("Produit ajouté au panier");
 		FacesContext.getCurrentInstance().addMessage(null, message);
 	}
