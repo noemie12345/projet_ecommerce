@@ -31,15 +31,13 @@
 			<p:outputLabel for="idQuantite" value="Quantité" />
 			<p:inputMask id="idQuantite" value="#{produitMB.produit.quantite}" />
 
-			<h:outputText value="Selectionné: " />
-			<p:selectBooleanButton id="value1" value="#{produitMB.value1}"
-				onLabel="Yes" offLabel="No" style="width:60px" />
+			<p:outputLabel for="Selectionne" value="Selectionné" />
+			<p:inputMask id="Selectionne" value="#{produitMB.produit.selectionne}" />
 
 			<p:outputLabel for="categorie" value="Categorie" />
-			<p:selectOneMenu id="categorie"
-				value="#{selectOneMenuView.categorie}">
+			<p:selectOneMenu id="categorie" value="#{produitMB.produit.nom_cat}">
 				<f:selectItem itemLabel="Selectionnez une valeur" itemValue="" />
-				<f:selectItems value="#{selectOneMenuView.categories}" />
+				<f:selectItems value="#{categorieMB.categories}" />
 			</p:selectOneMenu>
 
 		</h:panelGrid>

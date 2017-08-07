@@ -3,9 +3,11 @@ package fr.adaming.ManagedBeans;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import fr.adaming.model.Client;
 import fr.adaming.model.Panier;
@@ -30,9 +32,10 @@ public class ClientManagedBean {
 	public ClientManagedBean() {
 		super();
 		this.client = new Client();
+		this.panier = new Panier();
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	@PostConstruct
 	public void init() {
 		this.listeCl = (List<Client>) clService.getAll();
@@ -67,7 +70,7 @@ public class ClientManagedBean {
 	public void setClService(IClientService clService) {
 		this.clService = clService;
 	}
-	
+
 	public Panier getPanier() {
 		return panier;
 	}
@@ -75,13 +78,14 @@ public class ClientManagedBean {
 	public void setPanier(Panier panier) {
 		this.panier = panier;
 	}
-	
+
 	// Méthode Service
 
-	public String ajouterClient() {
+	public void ajouterClient() {
 		clService.add(this.client);
 		this.listeCl = (List<Client>) clService.getAll();
-		return "accueilClient";
+		FacesMessage message = new FacesMessage("Inscription réussie");
+		FacesContext.getCurrentInstance().addMessage(null, message);
 	}
 
 	public String supprimerClient() {
@@ -93,14 +97,23 @@ public class ClientManagedBean {
 	public void rechercherClientNom() {
 		this.client = clService.getByNom(this.client.getNomClient());
 	}
-	
+
 	public void rechercherClient() {
 		this.client = clService.getById(this.client.getIdClient());
 	}
 
-	public String ajoutPanier() {
-		Panier panier = new Panier(this.client, this.panier.getListeProduits(), this.panier.getListeLigne());
-		System.out.println("panier: " + panier);
-		return "accueilClient";
+	public void ajoutPanier() {
+//		this.panier = new Panier(this.panier.getListeProduits(), this.panier.getListeLigne());
+		this.panier = new Panier(this.panier.getProduit(), this.panier.getLigne());
+		FacesMessage message = new FacesMessage("Produit ajouté au panier");
+		FacesContext.getCurrentInstance().addMessage(null, message);
+	}
+	
+	public void ajouterProduit() {
+		this.panier.getLigne().ajouterQuantite();
+	}
+	
+	public void supprimerProduit() {
+		this.panier.getLigne().diminuerQuantite();
 	}
 }

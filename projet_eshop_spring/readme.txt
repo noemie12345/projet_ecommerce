@@ -3,7 +3,15 @@ Problèmes rencontrés:
 	les déclarer en tant que types primitifs et non en tant que Classe pour ne pas avoir de problèmes 
 	sur les méthodes de DAO par la suite. 
 	On utilise donc long et non Long pour définir les attributs des classes concernées.
-	
+
+Pour que le menu déroulant des produits répertoriant les catégories fonctionne, il faut que la base de donnée soit configurée en validate et 
+non en create.
+
+Bouton boolean dans ajoutProduit : 
+<h:outputText value="Selectionné: " />
+			<p:selectBooleanButton id="value1" value="#{produitMB.valeur}"
+				onLabel="Oui" offLabel="Non" onIcon="ui-icon-check" style="width:60px" />
+
 
 			<p:outputLabel for="idSelectionne" value="Selectionne: " />
 			<p:inputMask id="idSelectionne" value="#{produitMB.produit.selectionne}" />
@@ -85,4 +93,45 @@ pour supprimer produit
 <!--         <p:selectOneMenu id="idSelectionne" value="#{selectOneMenuView.car}"> -->
 <!--             <f:selectItem itemLabel="Choisissez" itemValue="" /> -->
 <!--             <f:selectItems value="#{selectOneMenuView.cars}" /> -->
-<!--         </p:selectOneMenu> -->			
+<!--         </p:selectOneMenu> -->	
+
+pour ajouter produit sur la catégorie:
+			<p:outputLabel for="categorie" value="Categorie" />
+			<p:selectOneMenu id="categorie" value="#{categorieMB.nomCat}">
+				<f:selectItem itemLabel="Selectionnez une valeur" itemValue="" />
+				<f:selectItems value="#{categorieMB.categories}" />
+			</p:selectOneMenu>	
+			
+<h:form>
+		<p:dataTable var="produit" value="#{produitMB.listeProduits}">
+			<p:column headerText="Nom du produit">
+				<h:outputText value="#{produit.designation}" />
+			</p:column>
+
+			<p:column headerText="Description">
+				<h:outputText value="#{produit.description}" />
+			</p:column>
+
+			<p:column headerText="Prix">
+				<h:outputText value="#{produit.prix}" />
+			</p:column>
+
+			<p:column headerText="Quantité">
+				<h:outputText value="#{produit.quantite}" />
+			</p:column>
+
+			<p:column headerText="Catégorie">
+				<h:outputText value="#{produit.categorie.nomCategorie}" />
+			</p:column>
+
+			<p:column headerText="Opérations">
+				<p:commandButton value="Supprimer" id="supprimer" update="@all"
+					action="#{produitMB.supprimerProduit}"
+					styleClass="ui-priority-primary">
+					<f:setPropertyActionListener value="#{produit.idProduit}"
+						target="#{produitMB.produit.idProduit}" />
+				</p:commandButton>
+			</p:column>
+		</p:dataTable>
+
+	</h:form>

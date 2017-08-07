@@ -31,6 +31,7 @@ public class Produit implements Serializable{
 	private String description;
 	private double prix;
 	private int quantite;
+	private String nom_cat;
 	
 	@Column(nullable=false, columnDefinition="TINYINT", length = 1)
 	private boolean selectionne;
@@ -43,24 +44,40 @@ public class Produit implements Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Produit(long idProduit, String designation, String description, double prix, int quantite,
-			boolean selectionne) {
+	
+	public Produit(long idProduit, String designation, String description, double prix, int quantite, String nom_cat,
+			boolean selectionne, Categorie categorie) {
 		super();
 		this.idProduit = idProduit;
 		this.designation = designation;
 		this.description = description;
 		this.prix = prix;
 		this.quantite = quantite;
+		this.nom_cat = categorie.getNomCategorie();
 		this.selectionne = selectionne;
+		this.categorie = categorie;
 	}
-	public Produit(String designation, String description, double prix, int quantite, boolean selectionne) {
+
+	public Produit(String designation, String description, double prix, int quantite, String nom_cat,
+			boolean selectionne, Categorie categorie) {
 		super();
 		this.designation = designation;
 		this.description = description;
 		this.prix = prix;
 		this.quantite = quantite;
+		this.nom_cat = categorie.getNomCategorie();
 		this.selectionne = selectionne;
+		this.categorie = categorie;
 	}
+
+	public String getNom_cat() {
+		return nom_cat;
+	}
+
+	public void setNom_cat(String nom_cat) {
+		this.nom_cat = nom_cat;
+	}
+
 	@Override
 	public String toString() {
 		return "Produit [idProduit=" + idProduit + ", designation=" + designation + ", description=" + description
@@ -108,5 +125,4 @@ public class Produit implements Serializable{
 	public void setCategorie(Categorie categorie) {
 		this.categorie = categorie;
 	}
-	
 }

@@ -3,9 +3,6 @@ package fr.adaming.model;
 import java.util.List;
 
 public class Panier {
-
-	private Client client;
-	private List<Client> listeClients;
 	
 	private Produit produit;
 	private List<Produit> listeProduits;
@@ -18,44 +15,29 @@ public class Panier {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Panier(Client client, List<Client> listeClients, Produit produit, List<Produit> listeProduits,
+	public Panier(Produit produit, List<Produit> listeProduits,
 			LigneCommande ligne, List<LigneCommande> listeLigne) {
 		super();
-		this.client = client;
-		this.listeClients = listeClients;
 		this.produit = produit;
 		this.listeProduits = listeProduits;
 		this.ligne = ligne;
 		this.listeLigne = listeLigne;
 	}
 
-	public Panier(List<Client> listeClients, List<Produit> listeProduits, List<LigneCommande> listeLigne) {
+	public Panier(List<Produit> listeProduits, List<LigneCommande> listeLigne) {
 		super();
-		this.listeClients = listeClients;
-		this.listeProduits = listeProduits;
-		this.listeLigne = listeLigne;
-	}
-	
-	public Panier(Client client, List<Produit> listeProduits, List<LigneCommande> listeLigne) {
-		super();
-		this.client = client;
 		this.listeProduits = listeProduits;
 		this.listeLigne = listeLigne;
 	}
 
+	public Panier(Produit produit, LigneCommande ligne) {
+		super();
+		this.produit = produit;
+		this.ligne = ligne;
+	}
+
 	//Getters et Setters
-	public Client getClient() {
-		return client;
-	}
-	public void setClient(Client client) {
-		this.client = client;
-	}
-	public List<Client> getListeClients() {
-		return listeClients;
-	}
-	public void setListeClients(List<Client> listeClients) {
-		this.listeClients = listeClients;
-	}
+
 	public Produit getProduit() {
 		return produit;
 	}

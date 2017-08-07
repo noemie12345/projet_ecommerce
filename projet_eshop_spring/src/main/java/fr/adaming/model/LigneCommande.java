@@ -2,8 +2,8 @@ package fr.adaming.model;
 
 public class LigneCommande {
 
-	private int quantite;
-	private int prix;
+	private int quantite = 0;
+	private int prix = 0;
 	
 	private Commande commande;
 
@@ -25,12 +25,7 @@ public class LigneCommande {
 	public String toString() {
 		return "LigneCommande [quantite=" + quantite + ", prix=" + prix + "]";
 	}
-//	public Panier getPanier() {
-//		return panier;
-//	}
-//	public void setPanier(Panier panier) {
-//		this.panier = panier;
-//	}
+
 	public Commande getCommande() {
 		return commande;
 	}
@@ -42,6 +37,19 @@ public class LigneCommande {
 	}
 	public void setProduit(Produit produit) {
 		this.produit = produit;
+	}
+	
+	//Méthode de ligneCommande
+	public int ajouterQuantite () {
+		return this.quantite += 1;
+	}
+	
+	public int diminuerQuantite () {
+		return this.quantite -= 1;
+	}
+	
+	public int totalProduit(int quantite) {
+		return this.prix = prix*quantite;
 	}
 	
 }

@@ -9,12 +9,7 @@ import fr.adaming.model.Panier;
 @SessionScoped
 public class PanierManagedBean {
 
+	
 	private Panier panier;
-	
-	public PanierManagedBean() {
-		super();
-		this.panier = new Panier();
-	}
-
-	
+	 
 }

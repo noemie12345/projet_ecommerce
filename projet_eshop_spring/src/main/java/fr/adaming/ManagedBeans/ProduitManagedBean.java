@@ -20,6 +20,7 @@ public class ProduitManagedBean {
 	private Produit produit;
 	private List<Produit> listeProduits;
 
+	private boolean valeur;
 	private boolean value1 = true;
 	private boolean value2 = false;
 	
@@ -74,6 +75,15 @@ public class ProduitManagedBean {
 	public void setValue2(boolean value2) {
 		this.value2 = value2;
 	}
+
+	public void setValeur(boolean valeur) {
+		this.valeur = valeur;
+	}
+
+	public void setListeProduits(List<Produit> listeProduits) {
+		this.listeProduits = listeProduits;
+	}
+	
 	//Méthodes Services
 
 	public String ajouterProduit() {
@@ -96,5 +106,13 @@ public class ProduitManagedBean {
 		produitService.update(this.produit);
 		this.listeProduits = (List<Produit>) produitService.getAll();
 		return "produit";
+	}
+	
+	public boolean valeurSelectionne() {
+		if (this.valeur == true) {
+			return value1;
+		} else {
+			return value2;
+		}
 	}
 }

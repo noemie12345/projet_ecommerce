@@ -16,25 +16,25 @@
 	</ui:insert>
 
 	<h:form>
-		<p:dataTable var="produit" value="#{produitMB.listeProduits}">
+		<p:dataTable var="panier" value="#{clMB.panier}">
 			<p:column headerText="Nom du produit">
-				<h:outputText value="#{produit.designation}" />
+				<h:outputText value="#{panier.produit.designation}" />
 			</p:column>
 
 			<p:column headerText="Description">
-				<h:outputText value="#{produit.description}" />
+				<h:outputText value="#{panier.produit.description}" />
 			</p:column>
 
 			<p:column headerText="Prix">
-				<h:outputText value="#{produit.prix}" />
+				<h:outputText value="#{panier.ligne.prix}" />
 			</p:column>
 
 			<p:column headerText="Quantité">
-				<h:outputText value="#{produit.quantite}" />
+				<h:outputText value="#{panier.ligne.quantite}" />
 			</p:column>
 
 			<p:column headerText="Catégorie">
-				<h:outputText value="#{produit.categorie.nomCategorie}" />
+				<h:outputText value="#{panier.produit.categorie.nomCategorie}" />
 			</p:column>
 
 			<p:column headerText="Opérations">
