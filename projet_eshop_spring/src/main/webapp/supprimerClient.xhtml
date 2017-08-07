@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Administrateur Client</title>
+</h:head>
+
+<h:body>
+	<ui:insert name="header">
+		<ui:include src="templates/headerTemplateClientAdmin.xhtml"></ui:include>
+	</ui:insert>
+
+	<h:form>
+		<h:panelGrid columns="2" cellpadding="5">
+			<p:outputLabel for="idClient" value="ID: " />
+			<p:inputMask id="idClient" value="#{clMB.client.idClient}" />
+		</h:panelGrid>
+		<p:commandButton value="Rechercher" id="rechercher" update="@all"
+			action="#{clMB.rechercherClient}"
+			styleClass="ui-priority-primary" />
+	</h:form>
+
+	<p:separator />
+	<h1 style="text-align: center; color: red">Client Trouvé</h1>
+
+	<h:form>
+	<h:panelGrid columns="2" cellpadding="5">
+			<p:outputLabel for="idClient" value="ID " />
+			<p:inputMask id="idClient" value="#{clMB.client.idClient}" />
+			
+			<p:outputLabel for="nom" value="Nom du Client " />
+			<p:inputMask id="nom" value="#{clMB.client.nomClient}" />
+
+			<p:outputLabel for="adresse" value="Adresse " />
+			<p:inputMask id="adresse" value="#{clMB.client.adresse}" />
+			
+			<p:outputLabel for="email" value="E-mail " />
+			<p:inputMask id="email" value="#{clMB.client.email}" />
+			
+			<p:outputLabel for="telephone" value="Téléphone " />
+			<p:inputMask id="telephone" value="#{clMB.client.tel}" />
+		</h:panelGrid>
+		<p:commandButton value="Supprimer" id="supprimer" update="@all"
+				actionListener="#{clMB.supprimerClient}"
+				styleClass="ui-priority-primary" />
+	</h:form>
+</h:body>
+</html>

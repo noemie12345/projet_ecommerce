@@ -42,9 +42,8 @@ public class ProduitService implements IProduitService {
 	}
 
 	@Override
-	public Produit getByNom(Produit produit) {
-		// TODO Auto-generated method stub
-		return null;
+	public Produit getByNom(String nom) {
+		return produitDAO.getByNom(nom);
 	}
 
 }

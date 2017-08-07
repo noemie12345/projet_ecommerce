@@ -7,7 +7,7 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<title>Administrateur Catégories</title>
+	<title>Administrateur Catégorie</title>
 </h:head>
 
 <h:body>
@@ -15,12 +15,19 @@
 		<ui:include src="templates/headerTemplateCategorie.xhtml"></ui:include>
 	</ui:insert>
 
-<h:form>
-	<p:dataTable var="categorie" value="#{categorieMB.listCategories}">
-    <p:column headerText="IdCategorie">
-        <h:outputText value="#{categorie.idCategorie}" />
-    </p:column>
- 
+	<h:form>
+		<h:panelGrid columns="2" cellpadding="5">
+			<p:outputLabel for="idCategorie" value="ID" />
+			<p:inputMask id="idCategorie" value="#{categorieMB.categorie.idCategorie}" />
+		</h:panelGrid>
+		<p:commandButton value="Rechercher" id="rechercher" update="@all"
+			action="#{categorieMB.rechercherCategorie}" styleClass="ui-priority-primary" />
+	</h:form>
+
+<p:separator />
+<h1 style="text-align: center; color:red">Produit Trouvé</h1> 
+
+<p:dataTable var="categorie" value="#{categorieMB.categorie}">
     <p:column headerText="Nom Catégorie">
         <h:outputText value="#{categorie.nomCategorie}" />
     </p:column>
@@ -28,17 +35,7 @@
     <p:column headerText="Description">
         <h:outputText value="#{categorie.description}" />
     </p:column>
-    
-    <p:column headerText="Opérations">
-    <p:commandButton value="Supprimer" id="supprimer" update="@all"
-				action="#{categorieMB.supprimerCategorie}"
-				styleClass="ui-priority-primary" > 
-	<f:setPropertyActionListener value="#{categorie.idCategorie}" target="#{categorieMB.categorie.idCategorie}" />		
-	</p:commandButton>
-    </p:column>
 </p:dataTable>
-
-</h:form>
+	
 </h:body>
-
 </html>

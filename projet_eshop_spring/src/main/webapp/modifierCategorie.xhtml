@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Administrateur Catégorie</title>
+</h:head>
+
+<h:body>
+	<ui:insert name="header">
+		<ui:include src="templates/headerTemplateCategorie.xhtml"></ui:include>
+	</ui:insert>
+
+	<h:form>
+		<h:panelGrid columns="2" cellpadding="5">
+			<p:outputLabel for="idCategorie" value="ID" />
+			<p:inputMask id="idCategorie" value="#{categorieMB.categorie.idCategorie}" />
+		</h:panelGrid>
+		<p:commandButton value="Rechercher" id="rechercher" update="@all"
+			action="#{categorieMB.rechercherCategorie}"
+			styleClass="ui-priority-primary" />
+	</h:form>
+
+	<p:separator />
+	<h1 style="text-align: center; color: red">Catégorie Trouvée</h1>
+
+	<h:form>
+		<h:panelGrid columns="2" cellpadding="5">
+			<p:outputLabel for="idCategorie" value="ID" />
+			<p:inputMask id="idCategorie" value="#{categorieMB.categorie.idCategorie}" />
+			
+			<p:outputLabel for="idNom" value="Nom de la Catégorie" />
+			<p:inputMask id="idNom" value="#{categorieMB.categorie.nomCategorie}" />
+
+			<p:outputLabel for="idDescription" value="Description" />
+			<p:inputMask id="idDescription" value="#{categorieMB.categorie.description}" />
+
+			<p:commandButton value="Modifier" id="modifier" update="@all"
+				action="#{categorieMB.modifierCategorie}"
+				styleClass="ui-priority-primary" />
+
+		</h:panelGrid>
+	</h:form>
+</h:body>
+</html>

@@ -24,8 +24,7 @@ public class ClientService implements IClientService {
 
 	@Override
 	public void update(Client client) {
-		// TODO Auto-generated method stub
-
+		clientDAO.update(client);
 	}
 
 	@Override
@@ -34,21 +33,18 @@ public class ClientService implements IClientService {
 	}
 
 	@Override
-	public Client getByNom(Client client) {
-		// TODO Auto-generated method stub
-		return null;
+	public Client getByNom(String nom) {
+		return clientDAO.getByNom(nom);
 	}
 
 	@Override
 	public void delete(long id) {
-		// TODO Auto-generated method stub
-		
+		clientDAO.delete(id);
 	}
 
 	@Override
 	public Client getById(long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return clientDAO.getById(id);
 	}
 
 }

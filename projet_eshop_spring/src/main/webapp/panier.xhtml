@@ -7,42 +7,34 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<title>Administrateur produit</title>
+	<title>Panier Client</title>
 </h:head>
 
 <h:body>
 	<ui:insert name="header">
-		<ui:include src="templates/headerTemplateProduit.xhtml"></ui:include>
+		<ui:include src="templates/headerTemplateClient.xhtml"></ui:include>
 	</ui:insert>
 
 	<h:form>
-		<p:dataTable var="produit" value="#{produitMB.listeProduits}">
-			<p:column headerText="Id">
-				<h:outputText value="#{produit.idProduit}" />
-			</p:column>
-
+		<p:dataTable var="panier" value="#{clMB.panier}">
 			<p:column headerText="Nom du produit">
-				<h:outputText value="#{produit.designation}" />
+				<h:outputText value="#{panier.produit.designation}" />
 			</p:column>
 
 			<p:column headerText="Description">
-				<h:outputText value="#{produit.description}" />
+				<h:outputText value="#{panier.produit.description}" />
 			</p:column>
 
 			<p:column headerText="Prix">
-				<h:outputText value="#{produit.prix}" />
+				<h:outputText value="#{panier.ligne.prix}" />
 			</p:column>
 
 			<p:column headerText="Quantité">
-				<h:outputText value="#{produit.quantite}" />
-			</p:column>
-
-			<p:column headerText="Selectionné">
-				<h:outputText value="#{produit.selectionne}" />
+				<h:outputText value="#{panier.ligne.quantite}" />
 			</p:column>
 
 			<p:column headerText="Catégorie">
-				<h:outputText value="#{produit.nom_cat}" />
+				<h:outputText value="#{panier.produit.categorie.nomCategorie}" />
 			</p:column>
 
 			<p:column headerText="Opérations">

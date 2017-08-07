@@ -7,20 +7,16 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-	<title>Administrateur Catégories</title>
+	<title>Catalogue par catégorie</title>
 </h:head>
 
 <h:body>
 	<ui:insert name="header">
-		<ui:include src="templates/headerTemplateCategorie.xhtml"></ui:include>
+		<ui:include src="templates/headerTemplateClient.xhtml"></ui:include>
 	</ui:insert>
 
 <h:form>
 	<p:dataTable var="categorie" value="#{categorieMB.listCategories}">
-    <p:column headerText="IdCategorie">
-        <h:outputText value="#{categorie.idCategorie}" />
-    </p:column>
- 
     <p:column headerText="Nom Catégorie">
         <h:outputText value="#{categorie.nomCategorie}" />
     </p:column>
@@ -30,7 +26,7 @@
     </p:column>
     
     <p:column headerText="Opérations">
-    <p:commandButton value="Supprimer" id="supprimer" update="@all"
+    <p:commandButton value="Ajouter au panier" id="ajoutPanier" update="@all"
 				action="#{categorieMB.supprimerCategorie}"
 				styleClass="ui-priority-primary" > 
 	<f:setPropertyActionListener value="#{categorie.idCategorie}" target="#{categorieMB.categorie.idCategorie}" />		

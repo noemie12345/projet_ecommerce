@@ -16,28 +16,35 @@
 
 <h:body>
 	<h:form>
-		<h:panelGrid columns="2" cellpadding="5">
-			<p:outputLabel for="idDesignation" value="Désignation: " />
-			<p:inputMask id="idDesignation" value="#{produitMB.produit.designation}" />
+		<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+			<p:outputLabel for="idDesignation" value="Nom du produit" />
+			<p:inputMask id="idDesignation"
+				value="#{produitMB.produit.designation}" />
 
 			<p:outputLabel for="idDescription" value="Description" />
-			<p:inputMask id="idDescription" value="#{produitMB.produit.description}" />
+			<p:inputMask id="idDescription"
+				value="#{produitMB.produit.description}" />
 
-			<p:outputLabel for="idPrix" value="Prix:" />
+			<p:outputLabel for="idPrix" value="Prix" />
 			<p:inputMask id="idPrix" value="#{produitMB.produit.prix}" />
 
-			<p:outputLabel for="idQuantite" value="Quantité:" />
+			<p:outputLabel for="idQuantite" value="Quantité" />
 			<p:inputMask id="idQuantite" value="#{produitMB.produit.quantite}" />
 
-			<p:outputLabel for="idSelectionne" value="Selectionne: " />
-			<p:inputMask id="idSelectionne" value="#{produitMB.produit.selectionne}" />
+			<p:outputLabel for="Selectionne" value="Selectionné" />
+			<p:inputMask id="Selectionne" value="#{produitMB.produit.selectionne}" />
 
-			<p:commandButton value="Ajouter" id="ajouter" update="@all"
-				action="#{produitMB.ajouterProduit}"
-				styleClass="ui-priority-primary" />
+			<p:outputLabel for="categorie" value="Categorie" />
+			<p:selectOneMenu id="categorie" value="#{produitMB.produit.nom_cat}">
+				<f:selectItem itemLabel="Selectionnez une valeur" itemValue="" />
+				<f:selectItems value="#{categorieMB.categories}" />
+			</p:selectOneMenu>
 
 		</h:panelGrid>
-	</h:form>
+		<p:commandButton id="submit" value="Ajouter"
+			action="#{produitMB.ajouterProduit}" update="@all"
+			icon="ui-icon-check" oncomplete="PF('dlg').show()" />
 
+	</h:form>
 </h:body>
 </html>

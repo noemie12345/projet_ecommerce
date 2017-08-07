@@ -5,22 +5,25 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 
 import fr.adaming.model.Produit;
 import fr.adaming.service.IProduitService;
 
 @ManagedBean(name="produitMB")
-@RequestScoped
+@SessionScoped
 public class ProduitManagedBean {
-
-	private Produit produit;
-	
-	private List<Produit> listeProduits;
 
 	@ManagedProperty(value="#{produitServiceBean}")
 	private IProduitService produitService;
+	
+	private Produit produit;
+	private List<Produit> listeProduits;
 
+	private boolean valeur;
+	private boolean value1 = true;
+	private boolean value2 = false;
+	
 	//Constructeur vide
 	public ProduitManagedBean() {
 		super();
@@ -57,6 +60,30 @@ public class ProduitManagedBean {
 		this.produitService = produitService;
 	}
 	
+	public boolean isValue1() {
+		return value1;
+	}
+
+	public void setValue1(boolean value1) {
+		this.value1 = value1;
+	}
+
+	public boolean isValue2() {
+		return value2;
+	}
+
+	public void setValue2(boolean value2) {
+		this.value2 = value2;
+	}
+
+	public void setValeur(boolean valeur) {
+		this.valeur = valeur;
+	}
+
+	public void setListeProduits(List<Produit> listeProduits) {
+		this.listeProduits = listeProduits;
+	}
+	
 	//Méthodes Services
 
 	public String ajouterProduit() {
@@ -79,5 +106,13 @@ public class ProduitManagedBean {
 		produitService.update(this.produit);
 		this.listeProduits = (List<Produit>) produitService.getAll();
 		return "produit";
+	}
+	
+	public boolean valeurSelectionne() {
+		if (this.valeur == true) {
+			return value1;
+		} else {
+			return value2;
+		}
 	}
 }

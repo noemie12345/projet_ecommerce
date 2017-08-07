@@ -2,22 +2,28 @@ package fr.adaming.ManagedBeans;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import fr.adaming.model.Client;
+import fr.adaming.model.Panier;
 import fr.adaming.service.IClientService;
 
-@ManagedBean(name="clMB")
-@RequestScoped
+@ManagedBean(name = "clMB")
+@SessionScoped
 public class ClientManagedBean {
 
 	private Client client;
-	
+
 	private List<Client> listeCl;
-	
-	@ManagedProperty(value="#{clientServiceBean}")
+
+	private Panier panier;
+
+	@ManagedProperty(value = "#{clientServiceBean}")
 	private IClientService clService;
 
 	/**
@@ -26,7 +32,13 @@ public class ClientManagedBean {
 	public ClientManagedBean() {
 		super();
 		this.client = new Client();
+		this.panier = new Panier();
 		// TODO Auto-generated constructor stub
+	}
+
+	@PostConstruct
+	public void init() {
+		this.listeCl = (List<Client>) clService.getAll();
 	}
 
 	@Override
@@ -35,7 +47,8 @@ public class ClientManagedBean {
 	}
 
 	/**
-	 * Setters - getters des paramètres 
+	 * Setters - getters des paramètres
+	 * 
 	 * @return
 	 */
 	public Client getClient() {
@@ -53,12 +66,54 @@ public class ClientManagedBean {
 	public void setListeCl(List<Client> listeCl) {
 		this.listeCl = listeCl;
 	}
-	
-	//Méthode Service
-	
-	public String ajouterClient() {
+
+	public void setClService(IClientService clService) {
+		this.clService = clService;
+	}
+
+	public Panier getPanier() {
+		return panier;
+	}
+
+	public void setPanier(Panier panier) {
+		this.panier = panier;
+	}
+
+	// Méthode Service
+
+	public void ajouterClient() {
 		clService.add(this.client);
 		this.listeCl = (List<Client>) clService.getAll();
-		return "accueil";
+		FacesMessage message = new FacesMessage("Inscription réussie");
+		FacesContext.getCurrentInstance().addMessage(null, message);
+	}
+
+	public String supprimerClient() {
+		clService.delete(this.client.getIdClient());
+		this.listeCl = (List<Client>) clService.getAll();
+		return "client";
+	}
+
+	public void rechercherClientNom() {
+		this.client = clService.getByNom(this.client.getNomClient());
+	}
+
+	public void rechercherClient() {
+		this.client = clService.getById(this.client.getIdClient());
+	}
+
+	public void ajoutPanier() {
+//		this.panier = new Panier(this.panier.getListeProduits(), this.panier.getListeLigne());
+		this.panier = new Panier(this.panier.getProduit(), this.panier.getLigne());
+		FacesMessage message = new FacesMessage("Produit ajouté au panier");
+		FacesContext.getCurrentInstance().addMessage(null, message);
+	}
+	
+	public void ajouterProduit() {
+		this.panier.getLigne().ajouterQuantite();
+	}
+	
+	public void supprimerProduit() {
+		this.panier.getLigne().diminuerQuantite();
 	}
 }
