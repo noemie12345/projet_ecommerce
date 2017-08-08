@@ -15,12 +15,19 @@ public class LigneCommande {
 		// TODO Auto-generated constructor stub
 	}
 	
-	//Constructeur Ligne de commande
 	public LigneCommande(int quantite, int prix) {
 		super();
 		this.quantite = quantite;
-		this.prix = (int) produit.getPrix();
+		this.prix = prix;
 	}
+
+//	//Constructeur Ligne de commande
+//	public LigneCommande(int quantite, int prix) {
+//		super();
+//		this.quantite = quantite;
+//		this.prix = (int) produit.getPrix();
+//	}
+	
 	public int getQuantite() {
 		return quantite;
 	}

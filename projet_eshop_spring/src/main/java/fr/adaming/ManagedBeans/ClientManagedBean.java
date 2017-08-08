@@ -160,6 +160,7 @@ public class ClientManagedBean {
 	 * Méthode permettant d'ajouter un produit dans le panier en instanciant un nouveau panier pour le client
 	 */
 	public void ajoutPanier() {
+		this.ligne = new LigneCommande(1, (int) this.produit.getPrix());
 //		this.panier = new Panier(this.panier.getListeProduits(), this.panier.getListeLigne());
 		this.panier = new Panier(this.produit, this.ligne);
 		System.out.println("panier: "+panier);
