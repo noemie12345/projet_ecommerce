@@ -13,6 +13,11 @@ import javax.faces.model.SelectItemGroup;
 import fr.adaming.model.Categorie;
 import fr.adaming.service.ICategorieService;
 
+/**
+ * Le managed Bean qui gère la vue de la page de gestion des catégories comprenant des méthodes du CRUD pour l'admin
+ * @author INTI-397
+ *
+ */
 @ManagedBean(name = "categorieMB")
 @SessionScoped
 public class CategorieManagedBean {
@@ -105,7 +110,11 @@ public class CategorieManagedBean {
 	public void rechercherCategorieNom() {
 		this.categorie = catService.getByNom(this.categorie.getNomCategorie());
 	}
-
+	
+	/**
+	 * Méthode permettant de récupérer l'ensemble des noms de catégories dans une liste
+	 * @return List<String> correspondant à la liste de noms de catégories.
+	 */
 	public List<String> recupererListeNom() {
 		List<String> noms = new ArrayList<String>();
 		for (Categorie cat : catService.getAll()) {
@@ -115,6 +124,11 @@ public class CategorieManagedBean {
 		return noms;
 	}
 
+	/**
+	 * Méthode permettant de récupérer la liste de noms de catégorie et de l'insérer dans une liste de SelectItem pour 
+	 * être visible dans le menu déroulant.
+	 * @return List<SelectItem> correspondant à la liste des noms de catégories visibles dans les formulaires de produit.
+	 */
 	public List<SelectItem> recupererToutNom() {
 		this.categories = new ArrayList<SelectItem>();
 		List<String> listeNom = recupererListeNom();

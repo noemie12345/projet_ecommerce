@@ -7,6 +7,7 @@ Problèmes rencontrés:
 Pour que le menu déroulant des produits répertoriant les catégories fonctionne, il faut que la base de donnée soit configurée en validate et 
 non en create.
 
+
 Bouton boolean dans ajoutProduit : 
 <h:outputText value="Selectionné: " />
 			<p:selectBooleanButton id="value1" value="#{produitMB.valeur}"

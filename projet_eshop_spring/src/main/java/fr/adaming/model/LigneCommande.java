@@ -2,13 +2,25 @@ package fr.adaming.model;
 
 public class LigneCommande {
 
-	private int quantite = 0;
-	private int prix = 0;
+	private int quantite = 1;
+	private int prix;
 	
 	private Commande commande;
 
 	private Produit produit;
 	
+	//Constructeur vide
+	public LigneCommande() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	//Constructeur Ligne de commande
+	public LigneCommande(int quantite, int prix) {
+		super();
+		this.quantite = quantite;
+		this.prix = (int) produit.getPrix();
+	}
 	public int getQuantite() {
 		return quantite;
 	}
@@ -40,16 +52,38 @@ public class LigneCommande {
 	}
 	
 	//Méthode de ligneCommande
+	
+	/**
+	 * Méthode permettant d'augmenter la quantité d'un produit du panier
+	 * @return int correspondant à la quantité du panier corrigée
+	 */
 	public int ajouterQuantite () {
-		return this.quantite += 1;
+		this.quantite += 1;
+		if (quantite > this.produit.getQuantite()) {
+			quantite = this.produit.getQuantite();
+		}
+		return quantite;
 	}
 	
+	/**
+	 * Méthode permettant de diminuer la quantité d'un produit du panier
+	 * @return int correspondant à la quantité du panier corrigée
+	 */
 	public int diminuerQuantite () {
-		return this.quantite -= 1;
+		this.quantite -= 1;
+		if (quantite < 0) {
+			quantite = 0;
+		}
+		return this.quantite;
 	}
 	
+	/**
+	 * Méthode permettant de donner le prix total des achats du panier.
+	 * @param quantite
+	 * @return int qui correspond au prix final à payer pour un produit
+	 */
 	public int totalProduit(int quantite) {
-		return this.prix = prix*quantite;
+		return this.prix = (int) (this.prix*quantite);
 	}
 	
 }

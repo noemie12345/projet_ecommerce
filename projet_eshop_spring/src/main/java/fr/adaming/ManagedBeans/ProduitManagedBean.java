@@ -10,10 +10,18 @@ import javax.faces.bean.SessionScoped;
 import fr.adaming.model.Produit;
 import fr.adaming.service.IProduitService;
 
+/**
+ * Le managed Bean qui gère la vue de la page de gestion des produits comprenant des méthodes du CRUD pour l'admin
+ * @author INTI-397
+ *
+ */
 @ManagedBean(name="produitMB")
 @SessionScoped
 public class ProduitManagedBean {
 
+	/**
+	 * Utilisation du couplage faible (par interfaces) pour appeler les méthodes de la couche Service du Produit
+	 */
 	@ManagedProperty(value="#{produitServiceBean}")
 	private IProduitService produitService;
 	
@@ -24,12 +32,18 @@ public class ProduitManagedBean {
 	private boolean value1 = true;
 	private boolean value2 = false;
 	
+	/**
+	 * Constructeur vide qui instancie des classes vides
+	 */
 	//Constructeur vide
 	public ProduitManagedBean() {
 		super();
 		this.produit = new Produit();
 	}
 
+	/**
+	 * Le post construct permet de charger la liste des clients lors de l'ouverture de la page
+	 */
 	@PostConstruct
 	public void init() {
 		this.listeProduits = (List<Produit>) produitService.getAll();

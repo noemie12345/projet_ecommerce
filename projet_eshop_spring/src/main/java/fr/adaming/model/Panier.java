@@ -2,6 +2,11 @@ package fr.adaming.model;
 
 import java.util.List;
 
+/**
+ * Le panier n'est pas persistant. Il n'est pas sauvegardé dans la base de donnée et est unique à chaque client.
+ * @author INTI-397
+ *
+ */
 public class Panier {
 	
 	private Produit produit;
@@ -61,6 +66,12 @@ public class Panier {
 	}
 	public void setListeLigne(List<LigneCommande> listeLigne) {
 		this.listeLigne = listeLigne;
+	}
+
+	@Override
+	public String toString() {
+		return "Panier [produit=" + produit + ", listeProduits=" + listeProduits + ", ligne=" + ligne + ", listeLigne="
+				+ listeLigne + "]";
 	}
 	
 }

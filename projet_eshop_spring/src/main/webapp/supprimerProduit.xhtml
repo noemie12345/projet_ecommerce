@@ -29,15 +29,17 @@
 	<h1 style="text-align: center; color: red">Produit Trouvé</h1>
 
 	<h:form>
-	<h:panelGrid columns="2" cellpadding="5">
+		<h:panelGrid columns="2" cellpadding="5">
 			<p:outputLabel for="idProduit" value="ID" />
 			<p:inputMask id="idProduit" value="#{produitMB.produit.idProduit}" />
-			
+
 			<p:outputLabel for="idDesignation" value="Désignation" />
-			<p:inputMask id="idDesignation" value="#{produitMB.produit.designation}" />
+			<p:inputMask id="idDesignation"
+				value="#{produitMB.produit.designation}" />
 
 			<p:outputLabel for="idDescription" value="Description" />
-			<p:inputMask id="idDescription" value="#{produitMB.produit.description}" />
+			<p:inputMask id="idDescription"
+				value="#{produitMB.produit.description}" />
 
 			<p:outputLabel for="idPrix" value="Prix" />
 			<p:inputMask id="idPrix" value="#{produitMB.produit.prix}" />
@@ -46,12 +48,18 @@
 			<p:inputMask id="idQuantite" value="#{produitMB.produit.quantite}" />
 
 			<p:outputLabel for="idSelectionne" value="Selectionne" />
-			<p:inputMask id="idSelectionne" value="#{produitMB.produit.selectionne}" />
-			
+			<p:inputMask id="idSelectionne"
+				value="#{produitMB.produit.selectionne}" />
+
+			<p:outputLabel for="categorie" value="Categorie" />
+			<p:selectOneMenu id="categorie" value="#{produitMB.produit.nom_cat}">
+				<f:selectItem itemLabel="Selectionnez une valeur" itemValue="" />
+				<f:selectItems value="#{categorieMB.categories}" />
+			</p:selectOneMenu>
 		</h:panelGrid>
 		<p:commandButton value="Supprimer" id="supprimer" update="@all"
-				actionListener="#{produitMB.supprimerProduit}"
-				styleClass="ui-priority-primary" />
+			actionListener="#{produitMB.supprimerProduit}"
+			styleClass="ui-priority-primary" />
 	</h:form>
 </h:body>
 </html>
