@@ -169,14 +169,17 @@ public class ClientManagedBean {
 		this.produit = produitService.getById(this.produit.getIdProduit());
 		System.out.println("produit: "+produit);
 		this.ligne = new LigneCommande(this.ligne.getQuantite(), (int) this.produit.getPrix()*this.ligne.getQuantite());
+		System.out.println("ligne commande: " +ligne);
 //		this.panier = new Panier(this.panier.getListeProduits(), this.panier.getListeLigne());
 		this.panier = new Panier(this.produit, this.ligne);
 		System.out.println("panier: "+panier);
-		
 		this.listePaniers.add(this.panier);
+		
 		for (Panier p : listePaniers) {
-			System.out.println(p);
+			System.out.println("p: " +p);
 		}
+		
+		this.produit = new Produit();
 		FacesMessage message = new FacesMessage("Produit ajouté au panier");
 		FacesContext.getCurrentInstance().addMessage(null, message);
 	}
@@ -188,13 +191,19 @@ public class ClientManagedBean {
 	
 	public void ajouterProduit() {
 		this.produit = produitService.getById(this.produit.getIdProduit());
-		System.out.println("produit: "+produit);
-		this.panier.getLigne().ajouterQuantite(this.produit.getIdProduit());
+		System.out.println("produit après ajout: "+produit);
+		this.ligne = new LigneCommande(this.ligne.getQuantite(), (int) this.produit.getPrix()*this.ligne.getQuantite());
+		System.out.println("ligne commande après ajout: " +ligne);
+		this.panier.getLigne().ajouterQuantite(this.panier.getProduit().getIdProduit());
+		System.out.println("panier après ajout: " +panier);
 	}
 	
 	public void supprimerProduit() {
 		this.produit = produitService.getById(this.produit.getIdProduit());
 		System.out.println("produit: "+produit);
+		this.ligne = new LigneCommande(this.ligne.getQuantite(), (int) this.produit.getPrix()*this.ligne.getQuantite());
+		System.out.println("ligne commande: " +ligne);
 		this.panier.getLigne().diminuerQuantite(this.produit.getIdProduit());
+		System.out.println("panier: " +panier);
 	}
 }
