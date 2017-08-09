@@ -64,8 +64,8 @@ public class LigneCommande {
 	 * Méthode permettant d'augmenter la quantité d'un produit du panier
 	 * @return int correspondant à la quantité du panier corrigée
 	 */
-	public int ajouterQuantite () {
-		this.quantite += 1;
+	public int ajouterQuantite (long id) {
+		this.quantite++;
 		if (quantite > this.produit.getQuantite()) {
 			quantite = this.produit.getQuantite();
 		}
@@ -76,8 +76,8 @@ public class LigneCommande {
 	 * Méthode permettant de diminuer la quantité d'un produit du panier
 	 * @return int correspondant à la quantité du panier corrigée
 	 */
-	public int diminuerQuantite () {
-		this.quantite -= 1;
+	public int diminuerQuantite (long id) {
+		this.quantite--;
 		if (quantite < 0) {
 			quantite = 0;
 		}

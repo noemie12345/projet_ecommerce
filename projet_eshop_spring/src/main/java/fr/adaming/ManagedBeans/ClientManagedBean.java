@@ -1,5 +1,6 @@
 package fr.adaming.ManagedBeans;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -29,6 +30,8 @@ public class ClientManagedBean {
 
 	private List<Client> listeCl;
 
+	private List<Panier> listePaniers;
+	
 	private Panier panier;
 	private Produit produit;
 	private LigneCommande ligne;
@@ -51,6 +54,7 @@ public class ClientManagedBean {
 		this.panier = new Panier();
 		this.produit = new Produit();
 		this.ligne = new LigneCommande();
+		this.listePaniers = new ArrayList<Panier>();
 		// TODO Auto-generated constructor stub
 	}
 
@@ -119,6 +123,14 @@ public class ClientManagedBean {
 	public void setProduitService(IProduitService produitService) {
 		this.produitService = produitService;
 	}
+	
+	public List<Panier> getListePaniers() {
+		return listePaniers;
+	}
+
+	public void setListePaniers(List<Panier> listePaniers) {
+		this.listePaniers = listePaniers;
+	}
 
 	// Méthode Service
 
@@ -149,30 +161,40 @@ public class ClientManagedBean {
 	public void rechercherClient() {
 		this.client = clService.getById(this.client.getIdClient());
 	}
-
-	public void getIdProduit() {
-		this.produit = produitService.getById(this.produit.getIdProduit());
-		System.out.println("produit: "+produit);
-		ajoutPanier();
-	}
 	
 	/**
 	 * Méthode permettant d'ajouter un produit dans le panier en instanciant un nouveau panier pour le client
 	 */
 	public void ajoutPanier() {
-		this.ligne = new LigneCommande(this.ligne.getQuantite(), (int) this.produit.getPrix());
+		this.produit = produitService.getById(this.produit.getIdProduit());
+		System.out.println("produit: "+produit);
+		this.ligne = new LigneCommande(this.ligne.getQuantite(), (int) this.produit.getPrix()*this.ligne.getQuantite());
 //		this.panier = new Panier(this.panier.getListeProduits(), this.panier.getListeLigne());
 		this.panier = new Panier(this.produit, this.ligne);
 		System.out.println("panier: "+panier);
+		
+		this.listePaniers.add(this.panier);
+		for (Panier p : listePaniers) {
+			System.out.println(p);
+		}
 		FacesMessage message = new FacesMessage("Produit ajouté au panier");
 		FacesContext.getCurrentInstance().addMessage(null, message);
 	}
+
+	public void supprimerPanier() {
+		this.produit = produitService.getById(this.produit.getIdProduit());
+		System.out.println("produit: "+produit);
+	}
 	
 	public void ajouterProduit() {
-		this.panier.getLigne().ajouterQuantite();
+		this.produit = produitService.getById(this.produit.getIdProduit());
+		System.out.println("produit: "+produit);
+		this.panier.getLigne().ajouterQuantite(this.produit.getIdProduit());
 	}
 	
 	public void supprimerProduit() {
-		this.panier.getLigne().diminuerQuantite();
+		this.produit = produitService.getById(this.produit.getIdProduit());
+		System.out.println("produit: "+produit);
+		this.panier.getLigne().diminuerQuantite(this.produit.getIdProduit());
 	}
 }

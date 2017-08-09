@@ -24,14 +24,6 @@
     <p:column headerText="Description">
         <h:outputText value="#{categorie.description}" />
     </p:column>
-    
-    <p:column headerText="Opérations">
-    <p:commandButton value="Ajouter au panier" id="ajoutPanier" update="@all"
-				action="#{categorieMB.supprimerCategorie}"
-				styleClass="ui-priority-primary" > 
-	<f:setPropertyActionListener value="#{categorie.idCategorie}" target="#{categorieMB.categorie.idCategorie}" />		
-	</p:commandButton>
-    </p:column>
 </p:dataTable>
 
 </h:form>

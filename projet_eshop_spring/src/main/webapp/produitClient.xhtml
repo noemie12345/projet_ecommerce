@@ -43,7 +43,7 @@
 
 			<p:column headerText="Opérations">
 				<p:commandButton value="Ajouter au panier" id="ajoutPanier"
-					update="@all" action="#{clMB.getIdProduit}"
+					update="@all" action="#{clMB.ajoutPanier}"
 					styleClass="ui-priority-primary">
 					<f:setPropertyActionListener value="#{produit.idProduit}"
 						target="#{clMB.produit.idProduit}" />

@@ -16,7 +16,7 @@
 	</ui:insert>
 
 	<h:form>
-		<p:dataTable var="panier" value="#{clMB.panier}">
+		<p:dataTable var="panier" value="#{clMB.listePaniers}">
 			<p:column headerText="Nom du produit">
 				<h:outputText value="#{panier.produit.designation}" />
 			</p:column>
@@ -43,6 +43,18 @@
 					styleClass="ui-priority-primary">
 					<f:setPropertyActionListener value="#{produit.idProduit}"
 						target="#{produitMB.produit.idProduit}" />
+				</p:commandButton>
+				
+				<p:commandButton value="+" id="Ajouter" update="@all"
+					action="#{clMB.ajouterProduit}" styleClass="ui-priority-primary">
+					<f:setPropertyActionListener value="#{panier.produit.idProduit}"
+						target="#{clMB.panier.produit.idProduit}" />
+				</p:commandButton>
+				
+				<p:commandButton value="-" id="Diminuer" update="@all"
+					action="#{clMB.supprimerProduit}" styleClass="ui-priority-primary">
+					<f:setPropertyActionListener value="#{panier.produit.idProduit}"
+						target="#{clMB.panier.produit.idProduit}" />
 				</p:commandButton>
 			</p:column>
 		</p:dataTable>
